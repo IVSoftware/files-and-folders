@@ -3,7 +3,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:FilesAndFolders.Maui"
-    x:Class="FilesAndFolders.Maui.MainPage">
+    x:Class="FilesAndFolders.Maui.MainPage"
+    BackgroundColor="RoyalBlue">
 
     <ContentPage.BindingContext>
         <local:MainPageViewModel/>
@@ -13,7 +14,8 @@
             ItemsSource="{Binding FileItems}" 
             SelectionMode="None"
             SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-            BackgroundColor="LightBlue">
+            BackgroundColor="LightBlue"
+            Margin="1">
         <CollectionView.ItemsLayout>
             <LinearItemsLayout Orientation="Vertical" ItemSpacing="2" />
         </CollectionView.ItemsLayout>

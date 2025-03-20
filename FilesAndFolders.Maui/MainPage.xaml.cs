@@ -11,10 +11,7 @@ namespace FilesAndFolders.Maui
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage()
-        {
-            InitializeComponent();
-        }
+        public MainPage()=> InitializeComponent();
         new MainPageViewModel BindingContext => (MainPageViewModel)base.BindingContext;
     }
     class MainPageViewModel
@@ -24,8 +21,12 @@ namespace FilesAndFolders.Maui
             var files = TestData.FILES.Split(Environment.NewLine);
             foreach (var file in files)
             {
-                new Placer(_xroot, file, onBeforeAdd: (sender, e) =>
+                new Placer(
+                    _xroot, 
+                    file, 
+                    onBeforeAdd: (sender, e) =>
                 {
+                    // Attach an instance of FileItem to the XElement.                    
                     e.Xel.SetBoundAttributeValue(
                         new FileItem(e.Xel),
                         name: nameof(NodeSortOrder.node));
@@ -205,7 +206,6 @@ namespace FilesAndFolders.Maui
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         public event PropertyChangedEventHandler? PropertyChanged;
-
     }
 
     class TestData
@@ -216,11 +216,9 @@ D:\files-and-folders\.gitignore
 D:\files-and-folders\files-and-folders.sln
 D:\files-and-folders\LICENSE.txt
 D:\files-and-folders\README.md
-D:\files-and-folders\.git\COMMIT_EDITMSG
 D:\files-and-folders\.git\config
 D:\files-and-folders\.git\description
 D:\files-and-folders\.git\HEAD
-D:\files-and-folders\.git\index
 D:\files-and-folders\.git\ms-persist.xml
 D:\files-and-folders\FilesAndFolders\FilesAndFolders.csproj
 D:\files-and-folders\FilesAndFolders\FilesAndFolders.csproj.user
