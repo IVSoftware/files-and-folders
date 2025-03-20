@@ -9,43 +9,46 @@
     <ContentPage.BindingContext>
         <local:MainPageViewModel/>
     </ContentPage.BindingContext>
-    <CollectionView 
-        x:Name="FileCollectionView" 
-            ItemsSource="{Binding FileItems}" 
-            SelectionMode="None"
-            SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-            BackgroundColor="LightBlue"
-            Margin="1">
-        <CollectionView.ItemsLayout>
-            <LinearItemsLayout Orientation="Vertical" ItemSpacing="2" />
-        </CollectionView.ItemsLayout>
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Grid ColumnDefinitions="Auto,40,*" RowDefinitions="40" Background="White">
-                    <BoxView 
-                        Grid.Column="0" 
-                        WidthRequest="{Binding Space}"
-                        BackgroundColor="{Binding BackgroundColor, Source={x:Reference FileCollectionView}}"/>
-                    <Button 
-                        Grid.Column="1" 
-                        Text="{Binding PlusMinus}" 
-                        TextColor="Black"
-                        Command="{Binding PlusMinusToggleCommand}"
-                        FontSize="16"
-                        BackgroundColor="Transparent"
-                        Padding="0"
-                        BorderWidth="0"
-                        VerticalOptions="Fill"
-                        HorizontalOptions="Fill"
-                        MinimumHeightRequest="0"
-                        MinimumWidthRequest="0"
-                        CornerRadius="0"/>
-                    <Label 
-                        Grid.Column="2"
-                        Text="{Binding Text}" 
-                        VerticalTextAlignment="Center" Padding="2,0,0,0"/>                    
-                </Grid>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    <Grid>
+        <CollectionView 
+            x:Name="FileCollectionView" 
+                ItemsSource="{Binding FileItems}" 
+                SelectionMode="None"
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                BackgroundColor="LightBlue"
+                Margin="1">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="2" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="Auto,40,*" RowDefinitions="40" Background="White">
+                        <BoxView 
+                            Grid.Column="0" 
+                            WidthRequest="{Binding Space}"
+                            BackgroundColor="{Binding BackgroundColor, Source={x:Reference FileCollectionView}}"/>
+                        <Button 
+                            Grid.Column="1" 
+                            Text="{Binding PlusMinus}" 
+                            TextColor="Black"
+                            Command="{Binding PlusMinusToggleCommand}"
+                            FontSize="16"
+                            BackgroundColor="Transparent"
+                            Padding="0"
+                            BorderWidth="0"
+                            VerticalOptions="Fill"
+                            HorizontalOptions="Fill"
+                            MinimumHeightRequest="0"
+                            MinimumWidthRequest="0"
+                            CornerRadius="0"/>
+                        <Label 
+                            Grid.Column="2"
+                            Text="{Binding Text}" 
+                            VerticalTextAlignment="Center" Padding="2,0,0,0"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <ActivityIndicator IsRunning="{Binding IsBusy}" WidthRequest="80" HeightRequest="80" Color="Aqua" />
+    </Grid>
 </ContentPage>

@@ -12,19 +12,16 @@ namespace FilesAndFolders.Maui
     public partial class MainPage : ContentPage
     {
         public MainPage()=> InitializeComponent();
-        new MainPageViewModel BindingContext => (MainPageViewModel)base.BindingContext;
     }
-    class MainPageViewModel
+    // <PackageReference Include = "IVSoftware.Portable.Xml.Linq.XBoundObject" Version="1.4.0-prerelease" />
+    class MainPageViewModel : INotifyPropertyChanged
     {
         public MainPageViewModel()
         {
             var files = TestData.FILES.Split(Environment.NewLine);
             foreach (var file in files)
             {
-                new Placer(
-                    _xroot, 
-                    file, 
-                    onBeforeAdd: (sender, e) =>
+                new Placer(_xroot, file, onBeforeAdd: (sender, e) =>
                 {
                     // Attach an instance of FileItem to the XElement.                    
                     e.Xel.SetBoundAttributeValue(
@@ -37,7 +34,7 @@ namespace FilesAndFolders.Maui
             {
                 FileItems.Add(root.To<FileItem>());
             }
-            _xroot.Changed += (sender, e) =>
+            _xroot.Changed += async(sender, e) =>
             {
                 switch (e.ObjectChange)
                 {
@@ -61,13 +58,18 @@ namespace FilesAndFolders.Maui
                                 // N O O P
                                 break;
                             case "-":
+                                IsBusy = true;
+                                await Task.Delay(1);
                                 FileItems.Clear();
                                 foreach (var visibleFileItem in VisibleFileItems())
                                 {
                                     FileItems.Add(visibleFileItem);
                                 }
+                                IsBusy = false;
                                 break;
                             case "+":
+                                IsBusy = true;
+                                await Task.Delay(1);
                                 foreach (var desc in xel.Descendants().Select(_ => _.To<FileItem>()))
                                 {
                                     if (desc != null)
@@ -75,6 +77,8 @@ namespace FilesAndFolders.Maui
                                         FileItems.Remove(desc);
                                     }
                                 }
+                                IsBusy = false;
+                                await Task.Delay(25);
                                 break;
                         }
                     }
@@ -111,6 +115,23 @@ namespace FilesAndFolders.Maui
                 }
             }
         }
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            {
+                if (!Equals(_isBusy, value))
+                {
+                    _isBusy = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        bool _isBusy = false;
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        public event PropertyChangedEventHandler? PropertyChanged;
+
     }
     enum NodeSortOrder { text, node, plusminus, }
 
