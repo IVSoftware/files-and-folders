@@ -1,4 +1,6 @@
-First I'd like to show you my tree view and then I'll tell you it's dirty little secret: It's not any kind of "tree view" and it uses no recursion. It's all a smoke-and-mirrors illusion where a spaces in the DataTemplate is bound to the "depth" of the file node. It's just one approach to consider.
+First I'd like to show you my tree view and then I'll tell you it's dirty little secret: it's not really a tree view and it uses no recursion. It's all a smoke-and-mirrors illusion where a spaces in the DataTemplate is bound to the "depth" of the file node. It's probably easier to see how this works if you run it on your device, so check the comments for the repo link. Anyway, maybe this style approach might be useful in your situation - it took me a few years to really figure out doing it like this.
+
+ BTW I noticed that on Android this (like many other things) seems to perform better in Release mode than Debug mode.
 
 **XAML**
 
