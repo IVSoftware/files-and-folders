@@ -1,4 +1,4 @@
-First I'd like to show you my tree view and then I'll tell you it's dirty little secret: It's not any kind of "tree view" and it uses no recursion. It's all a smoke-and-mirrors illusion where a spaces in the DataTemplate is bound to the "depth" of the file node.
+First I'd like to show you my tree view and then I'll tell you it's dirty little secret: It's not any kind of "tree view" and it uses no recursion. It's all a smoke-and-mirrors illusion where a spaces in the DataTemplate is bound to the "depth" of the file node. It's just one approach to consider.
 
 **XAML**
 
@@ -8,7 +8,7 @@ First I'd like to show you my tree view and then I'll tell you it's dirty little
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:FilesAndFolders.Maui"
     x:Class="FilesAndFolders.Maui.MainPage"
-    BackgroundColor="Fuchsia">
+    BackgroundColor="RoyalBlue">
 
     <ContentPage.BindingContext>
         <local:MainPageViewModel/>
