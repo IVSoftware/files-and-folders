@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:FilesAndFolders.Maui"
+    x:Class="FilesAndFolders.Maui.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel/>
+    </ContentPage.BindingContext>
+    <CollectionView 
+        x:Name="FileCollectionView" 
+            ItemsSource="{Binding FileItems}" 
+            SelectionMode="None"
+            SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+            BackgroundColor="LightBlue">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical" ItemSpacing="2" />
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid ColumnDefinitions="Auto,40,*" RowDefinitions="40" Background="White">
+                    <BoxView 
+                        Grid.Column="0" 
+                        WidthRequest="{Binding Space}"
+                        BackgroundColor="{Binding BackgroundColor, Source={x:Reference FileCollectionView}}"/>
+                    <Button 
+                        Grid.Column="1" 
+                        Text="{Binding PlusMinus}" 
+                        TextColor="Black"
+                        Command="{Binding PlusMinusToggleCommand}"
+                        FontSize="16"
+                        BackgroundColor="Transparent"
+                        Padding="0"
+                        BorderWidth="0"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill"
+                        MinimumHeightRequest="0"
+                        MinimumWidthRequest="0"
+                        CornerRadius="0"/>
+                    <Label 
+                        Grid.Column="2"
+                        Text="{Binding Text}" 
+                        VerticalTextAlignment="Center" Padding="2,0,0,0"/>                    
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
