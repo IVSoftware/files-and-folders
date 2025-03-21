@@ -1,3 +1,4 @@
+using FilesAndFolders.Portable;
 using IVSoftware.Portable.Xml.Linq;
 using IVSoftware.Portable.Xml.Linq.XBoundObject;
 using System.Xml.Linq;
@@ -142,7 +143,6 @@ D:\Github\IVSoftware\Maui\files-and-folders\.vs\files-and-folders\v17\TestStore\
 D:\Github\IVSoftware\Maui\files-and-folders\FilesAndFolders\obj\Debug\net8.0-windows\ref\FilesAndFolders.dll
 D:\Github\IVSoftware\Maui\files-and-folders\FilesAndFolders\obj\Debug\net8.0-windows\refint\FilesAndFolders.dll".Trim();
     }
-    enum NodeSortOrder { text, node }
     class FlatTreeNode
     {
         public FlatTreeNode(XElement xel, int depth) 

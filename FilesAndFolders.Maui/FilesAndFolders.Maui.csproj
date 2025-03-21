@@ -63,4 +63,8 @@
 		<PackageReference Include="IVSoftware.Portable.Xml.Linq.XBoundObject" Version="1.4.0-prerelease" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\FilesAndFolders.Portable\FilesAndFolders.Portable.csproj" />
+	</ItemGroup>
+
 </Project>
