@@ -15,7 +15,7 @@ namespace FilesAndFolders.Portable
             var files = TestData.FILES.Split(Environment.NewLine);
             foreach (var file in files)
             {
-                new Placer(_xroot, file, onBeforeAdd: (sender, e) =>
+                new Placer(XRoot, file, onBeforeAdd: (sender, e) =>
                 {
                     // Attach an instance of FileItem to the XElement.                    
                     e.Xel.SetBoundAttributeValue(
@@ -23,12 +23,12 @@ namespace FilesAndFolders.Portable
                         name: nameof(NodeSortOrder.node));
                 });
             }
-            _xroot.SortAttributes<NodeSortOrder>();
-            foreach (var root in _xroot.Elements().ToArray())
+            XRoot.SortAttributes<NodeSortOrder>();
+            foreach (var root in XRoot.Elements().ToArray())
             {
                 FileItems.Add(root.To<FileItem>());
             }
-            _xroot.Changed += async (sender, e) =>
+            XRoot.Changed += async (sender, e) =>
             {
                 switch (e.ObjectChange)
                 {
@@ -79,13 +79,13 @@ namespace FilesAndFolders.Portable
                 }
             };
         }
-        protected readonly XElement _xroot = new XElement("root");
+        public XElement XRoot { get; } = new XElement("root");
         public ObservableCollection<FileItem> FileItems { get; } = new ObservableCollection<FileItem>();
 
 
         protected IEnumerable<FileItem> VisibleFileItems()
         {
-            foreach (var element in localAddChildItems(_xroot.Elements()))
+            foreach (var element in localAddChildItems(XRoot.Elements()))
             {
                 yield return element;
             }

@@ -15,6 +15,9 @@ namespace FilesAndFolders
         public FileItemDataTemplate()
         {
             InitializeComponent();
+            BackColor = Color.Transparent;
+            Height = 50;
+            BorderStyle = BorderStyle.FixedSingle;
         }
     }
 }
