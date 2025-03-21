@@ -93,6 +93,7 @@ namespace FilesAndFolders
                 Width =
                         @this.Width - @this.Padding.Horizontal
                         - SystemInformation.VerticalScrollBarWidth - MARGIN.Horizontal,
+                DataContext = fileItem,
             });
         }
     }

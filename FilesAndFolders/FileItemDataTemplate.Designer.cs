@@ -29,17 +29,21 @@
         private void InitializeComponent()
         {
             Grid = new TableLayoutPanel();
-            spacer = new Control();
+            Spacer = new Label();
+            PlusMinus = new Label();
+            TextLabel = new Label();
             Grid.SuspendLayout();
             SuspendLayout();
             // 
             // Grid
             // 
             Grid.ColumnCount = 3;
-            Grid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
+            Grid.ColumnStyles.Add(new ColumnStyle());
             Grid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
             Grid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            Grid.Controls.Add(spacer, 0, 0);
+            Grid.Controls.Add(Spacer, 0, 0);
+            Grid.Controls.Add(PlusMinus, 1, 0);
+            Grid.Controls.Add(TextLabel, 2, 0);
             Grid.Dock = DockStyle.Fill;
             Grid.Location = new Point(0, 0);
             Grid.Margin = new Padding(0);
@@ -49,31 +53,58 @@
             Grid.Size = new Size(443, 54);
             Grid.TabIndex = 0;
             // 
-            // spacer
+            // Spacer
             // 
-            spacer.AutoSize = true;
-            spacer.Location = new Point();
-            spacer.Padding = new Padding();
-            spacer.Margin = new Padding();
-            spacer.Name = "spacer";
-            spacer.Size = new Size(49, 49);
-            spacer.TabIndex = 0;
+            Spacer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            Spacer.Location = new Point(0, 0);
+            Spacer.Margin = new Padding(0);
+            Spacer.Name = "Spacer";
+            Spacer.Size = new Size(60, 54);
+            Spacer.TabIndex = 0;
             // 
-            // FileItem
+            // PlusMinus
+            // 
+            PlusMinus.BackColor = SystemColors.Window;
+            PlusMinus.Dock = DockStyle.Fill;
+            PlusMinus.Font = new Font("Segoe UI", 14F);
+            PlusMinus.ForeColor = Color.Black;
+            PlusMinus.Location = new Point(60, 0);
+            PlusMinus.Margin = new Padding(0);
+            PlusMinus.Name = "PlusMinus";
+            PlusMinus.Size = new Size(60, 54);
+            PlusMinus.TabIndex = 0;
+            PlusMinus.Text = "+";
+            PlusMinus.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // TextLabel
+            // 
+            TextLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            TextLabel.BackColor = SystemColors.Window;
+            TextLabel.Location = new Point(120, 0);
+            TextLabel.Margin = new Padding(0);
+            TextLabel.Name = "TextLabel";
+            TextLabel.Size = new Size(323, 54);
+            TextLabel.TabIndex = 0;
+            TextLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // FileItemDataTemplate
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(Grid);
-            Name = "FileItem";
+            Margin = new Padding(0);
+            Name = "FileItemDataTemplate";
             Size = new Size(443, 54);
             Grid.ResumeLayout(false);
-            Grid.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
         private TableLayoutPanel Grid;
-        private Control spacer;
+        private Label Spacer;
+        private Label PlusMinus;
+        private Label Text;
+        private Label TextLabel;
     }
 }
