@@ -87,7 +87,6 @@ namespace FilesAndFolders
             var MARGIN = new Padding(2);
             @this.Controls.Add(new FileItemDataTemplate
             {
-                BorderStyle = BorderStyle.FixedSingle,
                 AutoSize = false,
                 Margin = MARGIN,
                 Width =

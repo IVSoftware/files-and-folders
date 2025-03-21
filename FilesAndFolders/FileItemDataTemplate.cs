@@ -16,8 +16,6 @@ namespace FilesAndFolders
         public FileItemDataTemplate()
         {
             InitializeComponent();
-            BackColor = Color.Transparent;
-            Grid.BackColor = Color.Transparent;
             Height = 50;
             PlusMinus.Click += (sender, e) => DataContext?.PlusMinusToggleCommand?.Execute(null); 
         }

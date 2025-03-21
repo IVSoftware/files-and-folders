@@ -60,6 +60,7 @@
             // 
             // FileCollectionView
             // 
+            FileCollectionView.AutoScroll = true;
             FileCollectionView.BackColor = Color.LightBlue;
             FileCollectionView.Dock = DockStyle.Fill;
             FileCollectionView.Location = new Point(2, 35);
