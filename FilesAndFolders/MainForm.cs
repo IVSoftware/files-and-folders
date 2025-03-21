@@ -34,7 +34,7 @@ namespace FilesAndFolders
                 new Placer(xroot, file, onBeforeAdd: (sender, e) =>
                 {
                     e.Xel.SetBoundAttributeValue(
-                        new FlatTreeNode(e.Xel, depth: pathArray.Length - 1),
+                        new FileItem(e.Xel),
                         name: nameof(NodeSortOrder.node));
                 });
             }
@@ -142,15 +142,5 @@ D:\Github\IVSoftware\Maui\files-and-folders\.vs\files-and-folders\v17\TestStore\
 D:\Github\IVSoftware\Maui\files-and-folders\.vs\files-and-folders\v17\TestStore\0\testlog.manifest
 D:\Github\IVSoftware\Maui\files-and-folders\FilesAndFolders\obj\Debug\net8.0-windows\ref\FilesAndFolders.dll
 D:\Github\IVSoftware\Maui\files-and-folders\FilesAndFolders\obj\Debug\net8.0-windows\refint\FilesAndFolders.dll".Trim();
-    }
-    class FlatTreeNode
-    {
-        public FlatTreeNode(XElement xel, int depth) 
-        {
-            XEL = xel;
-        }
-        XElement XEL { get; }
-        public int Depth { get; set; }
-        public string? Text => XEL.Attribute(nameof(NodeSortOrder.text))?.Value;
     }
 }

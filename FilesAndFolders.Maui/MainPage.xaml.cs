@@ -86,50 +86,5 @@ namespace FilesAndFolders.Maui
                 }
             };
         }
-        IEnumerable<FileItem> VisibleFileItems()
-        {
-            foreach (var element in localAddChildItems(_xroot.Elements()))
-            {
-                yield return element;
-            }
-
-            IEnumerable<FileItem> localAddChildItems(IEnumerable<XElement> elements)
-            {
-                foreach (var element in elements)
-                {
-                    if (element.To<FileItem>() is { } fileItem)
-                    {
-                        yield return fileItem;
-                    }
-                    if(element.Attribute(nameof(NodeSortOrder.plusminus))?.Value == "-")
-                    {
-                        foreach (var childElement in localAddChildItems(element.Elements()))
-                        {
-                            yield return childElement;
-                        }
-                    }
-                    else
-                    {   /* G T K */
-                    }
-                }
-            }
-        }
-        public bool IsBusy
-        {
-            get => _isBusy;
-            set
-            {
-                if (!Equals(_isBusy, value))
-                {
-                    _isBusy = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        bool _isBusy = false;
-        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        public event PropertyChangedEventHandler? PropertyChanged;
-
     }
 }
