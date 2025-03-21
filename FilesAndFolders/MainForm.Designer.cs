@@ -80,7 +80,7 @@
             Name = "MainForm";
             Padding = new Padding(2);
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Main Form";
+            Text = "FilesAndFolders.WinForms";
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
             ResumeLayout(false);
