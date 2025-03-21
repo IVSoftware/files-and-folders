@@ -1,6 +1,10 @@
-First I'd like to show you my tree view and then I'll tell you it's dirty little secret: it's not really a tree view and it uses no recursion. It's all a smoke-and-mirrors illusion where a spaces in the DataTemplate is bound to the "depth" of the file node. It's probably easier to see how this works if you run it on your device, so check the comments for the repo link. Anyway, maybe this style approach might be useful in your situation - it took me a few years to really figure out doing it like this.
+First I'd like to show you my tree view and then I'll tell you it's dirty little secret: it's not really a tree view and it (the view) uses no recursion (even though the backing data needs to of course). It's all a smoke-and-mirrors illusion where a spacer in the DataTemplate is bound to the "depth" of the file node. It's probably easier to see how this works if you run it on your device, so check the comments for the repo link.
 
- BTW I noticed that on Android this (like many other things) seems to perform better in Release mode than Debug mode.
+In my personal experience, heirarchal data like file structures and navigation trees pose some challenges, especially for me coming from `WinForms` and `TreeView` and needing business logic that was portable to something like `MAUI`. 
+
+BTW I noticed that on Android this (like many other things) seems to perform better in Release mode than Debug mode.
+
+[![screenshots](https://i.sstatic.net/7otmhCCe.png)](https://i.sstatic.net/7otmhCCe.png)
 
 **XAML**
 
@@ -56,6 +60,8 @@ First I'd like to show you my tree view and then I'll tell you it's dirty little
     </CollectionView>
 </ContentPage>
 ```
+
+___
 
 **Data Model**
 
@@ -154,15 +160,20 @@ class FileItem : INotifyPropertyChanged
     public event PropertyChangedEventHandler? PropertyChanged;
 }
 ```
+
 ___
 
 **Managing the (actual) Hierarchy**
 
-This isn't to say that there's not a tree structure involved, but consider the very portable approach of managing the hierarchy in a runtime XML document, but then projecting it onto a flat list to display it in a tree-like view. Here's what you're seeing here.
+This isn't to say that there's not a tree structure involved _somewhere_, but consider the very portable approach of managing the hierarchy in a runtime XML document, but then projecting it onto a flat list to display it in a tree-like view. Here's what you're seeing here.
 
-- The `Placer` code block projects the file names onto the XML document.
+- The `Placer` code block projects the flat file names onto the XML document in 2D.
 - The `System.Xml.Linq.Changed` event is used to detect when the data model sets "+" or "-" as a attribute on the bound node.
 - The `ObservableCollection<FileItem>` in this non-optimized version is cleared then repopulated using the `VisibleFileItems` iterator on the XML root model.
+
+The `Placer` scheme is going to support optimizing by progressively loading child nodes on demand if you decide to do that. I also tried partial updates to the FileItems list (more like a reconcile than a total refresh) but it didn't really seem that much faster (but it might be smoother).
+
+___
 
 ```
 // <PackageReference Include = "IVSoftware.Portable.Xml.Linq.XBoundObject" Version="1.4.0-prerelease" />
@@ -269,4 +280,3 @@ class MainPageViewModel : INotifyPropertyChanged
     }
 }
 ```
-

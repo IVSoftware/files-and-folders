@@ -159,20 +159,6 @@ namespace FilesAndFolders.Maui
         }
         public XElement XEL { get; }
 
-        public bool IsVisible
-        {
-            get => _isVisible;
-            set
-            {
-                if (!Equals(_isVisible, value))
-                {
-                    _isVisible = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        bool _isVisible = false;
-
         public int Depth
         {
             get
