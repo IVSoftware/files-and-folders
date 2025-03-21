@@ -3,11 +3,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:FilesAndFolders.Maui"
+    xmlns:portable="clr-namespace:FilesAndFolders.Portable;assembly=FilesAndFolders.Portable"
     x:Class="FilesAndFolders.Maui.MainPage"
     BackgroundColor="RoyalBlue">
 
     <ContentPage.BindingContext>
-        <local:MainPageViewModel/>
+        <portable:MainPageViewModel/>
     </ContentPage.BindingContext>
     <Grid>
         <CollectionView 
